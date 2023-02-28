@@ -3,8 +3,15 @@ import Sizes from "./Utils/Sizes";
 import Time from "./Utils/Time";
 import Camera from "./Camera";
 
+let instance = null;
+
 export default class Experience {
   constructor(canvas) {
+    if (instance) {
+      return instance;
+    }
+    instance = this;
+
     // Global access
     window.experience = this;
 
@@ -28,6 +35,11 @@ export default class Experience {
     });
   }
 
-  resize() {}
-  update() {}
+  resize() {
+    this.camera.resize();
+  }
+
+  update() {
+    this.camera.update();
+  }
 }
